@@ -24,3 +24,18 @@ void AVRUserDefaults::setIsBluetoothAlreadyConfigured(bool isConfigured) {
     eeprom_write_block((const void*)&record, (void*)0, sizeof(record)); // value to be written, address, length of the write
 }
 
+#pragma mark - Slave Found
+
+bool AVRUserDefaults::isSlaveAlreadyConfigured() {
+    byte storage;
+    eeprom_read_block((void*)&storage, (void*)1, sizeof(storage)); // read container, address, length of the read
+    return storage == 0;
+}
+
+void AVRUserDefaults::setIsSlaveAlreadyConfigured(bool isConfigured) {
+    
+    if (isSlaveAlreadyConfigured() == isConfigured) { return; }
+    
+    byte record = isConfigured ? 0x00 : 0xFF;
+    eeprom_write_block((const void*)&record, (void*)1, sizeof(record)); // value to be written, address, length of the write
+}

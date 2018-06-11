@@ -32,6 +32,9 @@
 namespace AVRUserDefaults {
     bool isBluetoothAlreadyConfigured();
     void setIsBluetoothAlreadyConfigured(bool isConfigured);
+    
+    bool isSlaveAlreadyConfigured();
+    void setIsSlaveAlreadyConfigured(bool isConfigured);
 }
 
 
